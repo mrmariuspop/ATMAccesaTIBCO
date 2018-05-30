@@ -1,0 +1,21 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:byte" name="account_id"/>
+        <xs:element type="xs:short" name="account_balance"/>
+        <xs:element type="xs:short" name="wthdr_amnt_limit"/>
+        <xs:element type="xs:byte" name="wthdr_no_limit"/>
+        <xs:element name="transaction" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="transaction_number"/>
+              <xs:element type="xs:date" name="transaction_date"/>
+              <xs:element type="xs:short" name="transaction_amount"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
