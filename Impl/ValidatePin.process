@@ -332,7 +332,7 @@
     <pd:activity name="sendBackError-1-1">
         <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
         <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
-        <pd:x>1086</pd:x>
+        <pd:x>1088</pd:x>
         <pd:y>426</pd:y>
         <config>
             <PermittedMessageType>Text</PermittedMessageType>
@@ -351,11 +351,11 @@
             <ApplicationProperties>/SharedResources/JMS Application Properties.sharedjmsapp</ApplicationProperties>
         </config>
         <pd:inputBindings>
-            <ns1:ActivityInput xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+            <ns:ActivityInput>
                 <Body>
                     <xsl:value-of select="$formatError-1-1/xmlString"/>
                 </Body>
-            </ns1:ActivityInput>
+            </ns:ActivityInput>
         </pd:inputBindings>
     </pd:activity>
     <pd:activity name="sendBackError-1-1-1">
@@ -380,11 +380,11 @@
             <ApplicationProperties>/SharedResources/JMS Application Properties.sharedjmsapp</ApplicationProperties>
         </config>
         <pd:inputBindings>
-            <ns1:ActivityInput xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jms">
+            <ns:ActivityInput>
                 <Body>
                     <xsl:value-of select="$formatError-1-1-1/xmlString"/>
                 </Body>
-            </ns1:ActivityInput>
+            </ns:ActivityInput>
         </pd:inputBindings>
     </pd:activity>
     <pd:activity name="sendBackSuccess">

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pd:ProcessDefinition xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/jms" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pfx="http://www.tibco.com/ns/no_namespace_schema_location/Schemas/atmschemas/ValidateCardResponse.xsd">
     <xsd:import namespace="http://www.tibco.com/ns/no_namespace_schema_location/Schemas/atmschemas/ValidateCardResponse.xsd" schemaLocation="/Schemas/atmschemas/ValidateCardResponse.xsd"/>
-    <pd:name>Impl/readMessage.process</pd:name>
+    <pd:name>Impl/readMessagePin.process</pd:name>
     <pd:startName>messageReceiver</pd:startName>
     <pd:startX>0</pd:startX>
     <pd:startY>0</pd:startY>
@@ -38,8 +38,8 @@
     <pd:activity name="getErrorCode">
         <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
         <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
-        <pd:x>364</pd:x>
-        <pd:y>58</pd:y>
+        <pd:x>465</pd:x>
+        <pd:y>64</pd:y>
         <config>
             <element>
                 <xsd:element name="root">
@@ -54,7 +54,7 @@
         <pd:inputBindings>
             <root>
                 <response_code>
-                    <xsl:value-of select="$messageReceiver/ns:ActivityOutput/Body"/>
+                    <xsl:value-of select="$Parse-XML/root/response_code"/>
                 </response_code>
             </root>
         </pd:inputBindings>
@@ -62,7 +62,7 @@
     <pd:activity name="JMS Queue Sender">
         <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
         <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
-        <pd:x>697</pd:x>
+        <pd:x>698</pd:x>
         <pd:y>59</pd:y>
         <config>
             <PermittedMessageType>Text</PermittedMessageType>
@@ -88,6 +88,23 @@
             </ns:ActivityInput>
         </pd:inputBindings>
     </pd:activity>
+    <pd:activity name="Parse XML">
+        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
+        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
+        <pd:x>295</pd:x>
+        <pd:y>58</pd:y>
+        <config>
+            <inputStyle>text</inputStyle>
+            <xsdVersion>default</xsdVersion>
+            <validateOutput>true</validateOutput>
+            <term ref="pfx:root"/>
+        </config>
+        <pd:inputBindings>
+            <xmlString>
+                <xsl:value-of select="$messageReceiver/ns:ActivityOutput/Body"/>
+            </xmlString>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>getErrorCode</pd:from>
         <pd:to>JMS Queue Sender</pd:to>
@@ -104,6 +121,13 @@
     </pd:transition>
     <pd:transition>
         <pd:from>messageReceiver</pd:from>
+        <pd:to>Parse XML</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Parse XML</pd:from>
         <pd:to>getErrorCode</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
