@@ -9,8 +9,8 @@
     <pd:starter name="messageReceiver">
         <pd:type>com.tibco.plugin.jms.JMSQueueEventSource</pd:type>
         <pd:resourceType>ae.activities.JMSQueueEventSource</pd:resourceType>
-        <pd:x>122</pd:x>
-        <pd:y>55</pd:y>
+        <pd:x>121</pd:x>
+        <pd:y>54</pd:y>
         <config>
             <PermittedMessageType>Text</PermittedMessageType>
             <SessionAttributes>
@@ -38,7 +38,7 @@
     <pd:activity name="getErrorCode">
         <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
         <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
-        <pd:x>523</pd:x>
+        <pd:x>364</pd:x>
         <pd:y>58</pd:y>
         <config>
             <element>
@@ -54,26 +54,9 @@
         <pd:inputBindings>
             <root>
                 <response_code>
-                    <xsl:value-of select="$parseMessage/root/response_code"/>
+                    <xsl:value-of select="$messageReceiver/ns:ActivityOutput/Body"/>
                 </response_code>
             </root>
-        </pd:inputBindings>
-    </pd:activity>
-    <pd:activity name="parseMessage">
-        <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
-        <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
-        <pd:x>335</pd:x>
-        <pd:y>55</pd:y>
-        <config>
-            <inputStyle>text</inputStyle>
-            <xsdVersion>default</xsdVersion>
-            <validateOutput>false</validateOutput>
-            <term ref="pfx:root"/>
-        </config>
-        <pd:inputBindings>
-            <xmlString>
-                <xsl:value-of select="$messageReceiver/ns:ActivityOutput/Body"/>
-            </xmlString>
         </pd:inputBindings>
     </pd:activity>
     <pd:activity name="JMS Queue Sender">
@@ -113,22 +96,15 @@
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>messageReceiver</pd:from>
-        <pd:to>parseMessage</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
-        <pd:from>parseMessage</pd:from>
-        <pd:to>getErrorCode</pd:to>
-        <pd:lineType>Default</pd:lineType>
-        <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
-    </pd:transition>
-    <pd:transition>
         <pd:from>JMS Queue Sender</pd:from>
         <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>messageReceiver</pd:from>
+        <pd:to>getErrorCode</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
