@@ -93,8 +93,8 @@
     <pd:activity name="error203">
         <pd:type>com.tibco.plugin.xml.XMLRendererActivity</pd:type>
         <pd:resourceType>ae.activities.XMLRendererActivity</pd:resourceType>
-        <pd:x>717</pd:x>
-        <pd:y>409</pd:y>
+        <pd:x>718</pd:x>
+        <pd:y>410</pd:y>
         <config>
             <renderAsText>text</renderAsText>
             <validateInput>false</validateInput>

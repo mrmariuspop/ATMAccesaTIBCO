@@ -31,7 +31,7 @@
     </pd:starter>
     <pd:endName>End</pd:endName>
     <pd:endX>923</pd:endX>
-    <pd:endY>55</pd:endY>
+    <pd:endY>54</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace>http://xmlns.example.com/1527595154677</pd:targetNamespace>
@@ -39,7 +39,7 @@
         <pd:type>com.tibco.plugin.mapper.MapperActivity</pd:type>
         <pd:resourceType>ae.activities.MapperActivity</pd:resourceType>
         <pd:x>465</pd:x>
-        <pd:y>64</pd:y>
+        <pd:y>54</pd:y>
         <config>
             <element>
                 <xsd:element name="root">
@@ -63,7 +63,7 @@
         <pd:type>com.tibco.plugin.jms.JMSQueueSendActivity</pd:type>
         <pd:resourceType>ae.activities.JMSQueueSendActivity</pd:resourceType>
         <pd:x>698</pd:x>
-        <pd:y>59</pd:y>
+        <pd:y>54</pd:y>
         <config>
             <PermittedMessageType>Text</PermittedMessageType>
             <SessionAttributes>
@@ -91,8 +91,8 @@
     <pd:activity name="Parse XML">
         <pd:type>com.tibco.plugin.xml.XMLParseActivity</pd:type>
         <pd:resourceType>ae.activities.XMLParseActivity</pd:resourceType>
-        <pd:x>295</pd:x>
-        <pd:y>58</pd:y>
+        <pd:x>296</pd:x>
+        <pd:y>54</pd:y>
         <config>
             <inputStyle>text</inputStyle>
             <xsdVersion>default</xsdVersion>
